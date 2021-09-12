@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h1 {text-align : center;}
+    h2 {text-align : center;}
+    body {background-color: orange;}
+</style>
+<body>
+    <h1 style="font-size:90px;font-family:helvetica">Quizify</h1>
+    <h2 style="font-size:40px;font-family:helvetica">Select a playlist:</h2>
+    <h2>{{user.username}}: {{user.score}}pts</h2>
+    <ul id="loop" style="font-size:30px;font-family:helvetica;text-align:center;">
+        {% for playlist in playlists %}
+            {{playlist.name}}
+            <form action="http://127.0.0.1:8000/quiz/{{playlist.id}}">
+                <input type="submit" value="{{playlist.name}}">
+            </form>
+            <br><br>
+        {%endfor%}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Local configuration folder and symbol database
+/.anjuta/
+/.anjuta_sym_db.db
+.venv
+/quizify/__pycache__/*
+/quiz/__pycache__/*
+/quiz/migrations/__pycache__/*
+db.sqlite3

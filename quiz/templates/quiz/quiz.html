@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{name}}</h1>
+
+    <ul id="loop" style="font-size:30px;font-family:helvetica;text-align:center;">
+        {{playlist.name}}
+        {% if user %}
+            <h4>{{user.username}}</h4>
+        {%endif%}
+        {% if results %}
+            <h4>Quiz Score: {{score}}</h4>            
+        {%endif%}
+        {% if user and results %}
+            <h4>New Personal Score: {{user.score}}</h4>
+        {%endif%}
+        <form {%if results%} action="http://127.0.0.1:8000/home" method="GET" {%endif%}>
+            {% csrf_token %}
+            {% for song in playlist %}
+            <iframe src="https://open.spotify.com/embed/track/{{song.id}}" width="80" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            {% if results %}
+                <p>{{song.name}}</p>
+            {%endif%}
+            <input type="text" name="{{song.id}}" placeholder="Enter song">
+            <br><br>
+            {%endfor%}
+
+        <input type="submit" name="submit" {% if results %} value="Return Home" {%else%} value="Submit Quiz" {%endif%}>
+        </form>
+    </ul>
+</body>
+</html>
